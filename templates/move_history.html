@@ -1,42 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Move History</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move History | Warehive</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        .bg-tech-grid {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
 </head>
+<body class="bg-tech-grid min-h-screen text-slate-800 p-6">
 
-<body>
+    <!-- NAVIGATION -->
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl glass-panel rounded-full shadow-lg z-50 px-2 py-2 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center gap-3 px-4">
+            <a href="dashboard.html" class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white">
+                    <i class="ph-bold ph-cube text-xl"></i>
+                </div>
+                <span class="font-bold text-lg tracking-tight text-slate-900">Warehive</span>
+            </a>
+        </div>
 
-<h2>Stock Move History</h2>
+        <!-- Menu -->
+        <div class="hidden md:flex items-center bg-slate-100/50 rounded-full p-1">
+            <a href="dashboard.html" class="px-5 py-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 font-medium text-sm transition-all">Dashboard</a>
+            <a href="#" class="px-5 py-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 font-medium text-sm transition-all">Receipts</a>
+            <a href="#" class="px-5 py-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 font-medium text-sm transition-all">Deliveries</a>
+            <a href="#" class="px-5 py-2 rounded-full bg-white shadow-sm text-slate-900 font-bold text-sm transition-all">Move History</a>
+        </div>
 
-<table border="1">
+        <!-- Profile -->
+        <div class="relative group px-2">
+            <button class="flex items-center gap-3 bg-white/80 backdrop-blur-sm pl-4 pr-1 py-1 rounded-full border border-white shadow-sm hover:bg-white transition-all">
+                <div class="hidden lg:block text-right">
+                    <p class="text-xs font-bold text-slate-800 leading-none">John Doe</p>
+                    <p class="text-[10px] text-slate-500 font-medium leading-none mt-1">Manager</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center border-2 border-white shadow-sm">
+                    <i class="ph-bold ph-user"></i>
+                </div>
+            </button>
+        </div>
+    </nav>
 
-<tr>
-<th>Product</th>
-<th>Quantity</th>
-<th>Move Type</th>
-<th>Date</th>
-</tr>
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto mt-32">
+        
+        <!-- HEADER & TOOLBAR -->
+        <div class="glass-panel rounded-t-[2rem] border-b-0 p-6 flex flex-col md:flex-row justify-between items-end md:items-center gap-4">
+            
+            <div class="flex items-center gap-6">
+                <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Move History</h1>
+                <!-- NEW BUTTON (Wireframe style) -->
+                <button class="group flex items-center gap-2 px-4 py-2 bg-white border border-rose-200 text-rose-600 rounded-lg hover:bg-rose-50 hover:border-rose-300 transition-all shadow-sm">
+                    <i class="ph-bold ph-plus"></i>
+                    <span class="text-sm font-bold uppercase tracking-wider">New</span>
+                </button>
+            </div>
 
-{% for m in moves %}
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <!-- SEARCH BAR (Wireframe: Search based on reference & contacts) -->
+                <div class="relative group w-full md:w-64">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="ph-bold ph-magnifying-glass text-slate-400 group-hover:text-rose-500 transition-colors"></i>
+                    </div>
+                    <input type="text" 
+                           class="block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-xl leading-5 bg-white/50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 sm:text-sm transition-all" 
+                           placeholder="Search Ref or Contact...">
+                </div>
 
-<tr>
+                <!-- VIEW SWITCHER (Wireframe: List vs Kanban) -->
+                <div class="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <button class="p-2 rounded-md bg-white shadow-sm text-slate-900">
+                        <i class="ph-bold ph-list"></i>
+                    </button>
+                    <button class="p-2 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 transition">
+                        <i class="ph-bold ph-kanban"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-<td>{{m.product}}</td>
-<td>{{m.quantity}}</td>
+        <!-- TABLE SECTION -->
+        <div class="glass-panel rounded-b-[2rem] border-t-0 overflow-hidden shadow-xl">
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-left border-collapse">
+                    
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="bg-rose-50/50 border-b border-rose-100">
+                            <th class="px-6 py-4 text-xs font-bold text-rose-900 uppercase tracking-wider">Reference</th>
+                            <th class="px-6 py-4 text-xs font-bold text-rose-900 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-4 text-xs font-bold text-rose-900 uppercase tracking-wider">Contact</th>
+                            <th class="px-6 py-4 text-xs font-bold text-rose-900 uppercase tracking-wider">From</th>
+                            <th class="px-6 py-4 text-xs font-bold text-rose-900 uppercase tracking-wider">To</th>
+                            <th class="px-6 py-4 text-right text-xs font-bold text-rose-900 uppercase tracking-wider">Quantity</th>
+                            <th class="px-6 py-4 text-center text-xs font-bold text-rose-900 uppercase tracking-wider">Status</th>
+                        </tr>
+                    </thead>
 
-{% if m.move_type == "IN" %}
-<td style="color:green;">IN</td>
-{% else %}
-<td style="color:red;">OUT</td>
-{% endif %}
+                    <tbody class="divide-y divide-slate-100 bg-white/80">
+                        
+                        <!-- ROW 1: RECEIPT (IN) -> GREEN LOGIC -->
+                        <tr class="hover:bg-slate-50 transition-colors group">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-sm font-bold text-slate-800">WH/IN/0001</span>
+                                <div class="text-[10px] text-slate-400">Receipt</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                12/01/2024
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">V</div>
+                                    <span class="text-sm text-slate-700 font-medium">Azure Interior</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                Vendor
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-700">
+                                WH/Stock
+                            </td>
+                            <!-- Green for Incoming -->
+                            <td class="px-6 py-4 whitespace-nowrap text-right">
+                                <span class="text-sm font-extrabold text-emerald-600">+ 50.00</span>
+                                <span class="text-xs text-emerald-400 font-medium">Units</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                    Ready
+                                </span>
+                            </td>
+                        </tr>
 
-<td>{{m.created_at}}</td>
+                        <!-- ROW 2: DELIVERY (OUT) -> RED LOGIC -->
+                        <tr class="hover:bg-slate-50 transition-colors group">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-sm font-bold text-slate-800">WH/OUT/0002</span>
+                                <div class="text-[10px] text-slate-400">Delivery</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                12/01/2024
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold">A</div>
+                                    <span class="text-sm text-slate-700 font-medium">Azure Interior</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-700">
+                                WH/Stock
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                Customer
+                            </td>
+                            <!-- Red for Outgoing -->
+                            <td class="px-6 py-4 whitespace-nowrap text-right">
+                                <span class="text-sm font-extrabold text-rose-600">- 10.00</span>
+                                <span class="text-xs text-rose-400 font-medium">Units</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200">
+                                    Ready
+                                </span>
+                            </td>
+                        </tr>
 
-</tr>
+                        <!-- ROW 3: Same Reference, Multiple Products (Wireframe Requirement) -->
+                        <tr class="hover:bg-slate-50 transition-colors group">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <!-- Opacity implies continued reference -->
+                                <span class="text-sm font-bold text-slate-400">WH/OUT/0002</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                12/01/2024
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold">A</div>
+                                    <span class="text-sm text-slate-700 font-medium">Azure Interior</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-700">
+                                WH/Stock/Shelf 2
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                Customer
+                            </td>
+                            <!-- Red for Outgoing -->
+                            <td class="px-6 py-4 whitespace-nowrap text-right">
+                                <span class="text-sm font-extrabold text-rose-600">- 5.00</span>
+                                <span class="text-xs text-rose-400 font-medium">Units</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200">
+                                    Ready
+                                </span>
+                            </td>
+                        </tr>
 
-{% endfor %}
+                        <!-- ROW 4: INTERNAL TRANSFER (Neutral Logic) -->
+                        <tr class="hover:bg-slate-50 transition-colors group">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-sm font-bold text-slate-800">WH/INT/0045</span>
+                                <div class="text-[10px] text-slate-400">Internal</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                11/01/2024
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-sm text-slate-400 italic">-- Internal --</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                WH/Input
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                WH/Stock
+                            </td>
+                            <!-- Neutral for Internal -->
+                            <td class="px-6 py-4 whitespace-nowrap text-right">
+                                <span class="text-sm font-extrabold text-slate-700">100.00</span>
+                                <span class="text-xs text-slate-400 font-medium">kg</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                                    Done
+                                </span>
+                            </td>
+                        </tr>
 
-</table>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- FOOTER / PAGINATION -->
+            <div class="bg-white border-t border-slate-100 px-6 py-4 flex items-center justify-between">
+                <p class="text-xs text-slate-500">Showing <span class="font-bold text-slate-700">1-4</span> of <span class="font-bold text-slate-700">128</span> moves</p>
+                <div class="flex gap-2">
+                    <button class="px-3 py-1 rounded-md border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Previous</button>
+                    <button class="px-3 py-1 rounded-md border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Next</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
 
 </body>
 </html>
