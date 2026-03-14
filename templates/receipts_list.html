@@ -1,34 +1,250 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Receipts</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Receipts | Warehive</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+.bg-tech-grid{
+background:#f8fafc;
+background-image:radial-gradient(#cbd5e1 1px,transparent 1px);
+background-size:24px 24px;
+}
+
+.glass-panel{
+background:rgba(255,255,255,.85);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,.6);
+box-shadow:0 4px 30px rgba(0,0,0,.05);
+}
+
+.card-hover-effect{
+transition:.3s;
+}
+
+.card-hover-effect:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 25px rgba(0,0,0,.08);
+}
+
+.group:hover .group-hover\:block{
+display:block;
+}
+
+</style>
+
 </head>
 
-<body>
 
-<h2>Receipts</h2>
+<body class="bg-tech-grid min-h-screen text-slate-800 p-6">
 
-<table border="1">
+<!-- NAVBAR -->
 
-<tr>
-<th>Reference</th>
-<th>Contact</th>
-<th>Schedule Date</th>
-<th>Status</th>
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl glass-panel rounded-full shadow-xl px-2 py-2 flex justify-between items-center">
+
+<div class="flex items-center gap-3 px-4">
+
+<div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white">
+<i class="ph-bold ph-cube"></i>
+</div>
+
+<span class="font-bold text-lg text-slate-900">
+Warehive
+</span>
+
+</div>
+
+
+<div class="hidden md:flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
+
+<a href="/dashboard/" class="px-5 py-2 text-slate-500 hover:bg-white rounded-full text-sm">
+Dashboard
+</a>
+
+<a href="/products/" class="px-5 py-2 text-slate-500 hover:bg-white rounded-full text-sm">
+Products
+</a>
+
+<a href="/operations/receipts/" class="px-5 py-2 bg-white rounded-full text-slate-900 font-bold text-sm shadow">
+Receipts
+</a>
+
+<a href="/operations/deliveries/" class="px-5 py-2 text-slate-500 hover:bg-white rounded-full text-sm">
+Deliveries
+</a>
+
+<a href="/operations/stock/" class="px-5 py-2 text-slate-500 hover:bg-white rounded-full text-sm">
+Stock
+</a>
+
+</div>
+
+
+<div class="relative group px-2">
+
+<button class="flex items-center gap-3 bg-white pl-4 pr-1 py-1 rounded-full border shadow-sm">
+
+<div class="hidden lg:block text-right">
+
+<p class="text-xs font-bold">
+{{ request.user.username|default:"User" }}
+</p>
+
+<p class="text-[10px] text-slate-500">
+Manager
+</p>
+
+</div>
+
+<div class="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center">
+<i class="ph-bold ph-user"></i>
+</div>
+
+</button>
+
+</div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="max-w-5xl mx-auto mt-36 pb-20">
+
+
+<!-- HEADER -->
+
+<div class="mb-10">
+
+<div class="flex items-center gap-4 mb-4">
+
+<a href="/dashboard/" class="w-12 h-12 rounded-full bg-white shadow border flex items-center justify-center">
+<i class="ph-bold ph-caret-left"></i>
+</a>
+
+<h1 class="text-4xl font-extrabold">
+Receipts
+</h1>
+
+</div>
+
+<p class="text-slate-500 text-lg">
+Track incoming warehouse receipts and scheduled deliveries.
+</p>
+
+</div>
+
+
+<!-- RECEIPTS TABLE -->
+
+<div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+
+<table class="w-full">
+
+<thead class="bg-slate-50 text-left">
+
+<tr class="text-sm text-slate-500 uppercase tracking-wider">
+
+<th class="px-6 py-4">Reference</th>
+
+<th class="px-6 py-4">Contact</th>
+
+<th class="px-6 py-4">Schedule Date</th>
+
+<th class="px-6 py-4">Status</th>
+
 </tr>
+
+</thead>
+
+<tbody class="divide-y divide-slate-100">
 
 {% for r in receipts %}
 
+<tr class="hover:bg-slate-50 transition">
+
+<td class="px-6 py-4 font-semibold text-slate-900">
+{{ r.reference }}
+</td>
+
+<td class="px-6 py-4 text-slate-600">
+{{ r.contact }}
+</td>
+
+<td class="px-6 py-4 text-slate-600">
+{{ r.schedule_date }}
+</td>
+
+<td class="px-6 py-4">
+
+{% if r.status == "Completed" %}
+
+<span class="px-3 py-1 text-xs font-bold rounded-full bg-emerald-50 text-emerald-600">
+Completed
+</span>
+
+{% elif r.status == "Pending" %}
+
+<span class="px-3 py-1 text-xs font-bold rounded-full bg-amber-50 text-amber-600">
+Pending
+</span>
+
+{% else %}
+
+<span class="px-3 py-1 text-xs font-bold rounded-full bg-slate-100 text-slate-600">
+{{ r.status }}
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% empty %}
+
 <tr>
-<td>{{r.reference}}</td>
-<td>{{r.contact}}</td>
-<td>{{r.schedule_date}}</td>
-<td>{{r.status}}</td>
+
+<td colspan="4" class="text-center py-12">
+
+<div class="flex flex-col items-center gap-4">
+
+<i class="ph-duotone ph-truck text-5xl text-slate-400"></i>
+
+<p class="text-slate-500 font-medium">
+No receipts available
+</p>
+
+</div>
+
+</td>
+
 </tr>
 
 {% endfor %}
 
+</tbody>
+
 </table>
+
+</div>
+
+</main>
 
 </body>
 </html>

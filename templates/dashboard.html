@@ -1,195 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Warehive</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        .bg-tech-grid {
-            background-color: #f8fafc;
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
+<title>Dashboard | Warehive</title>
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        /* Hover Animations */
-        .card-hover-effect {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover-effect:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* Profile Dropdown Animation */
-        .group:hover .group-hover\:block {
-            display: block;
-            animation: fadeIn 0.2s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+.bg-tech-grid{
+background-color:#f8fafc;
+background-image:radial-gradient(#cbd5e1 1px,transparent 1px);
+background-size:24px 24px;
+}
+
+.glass-panel{
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.5);
+}
+
+.card-hover{
+transition:all .3s ease;
+}
+
+.card-hover:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 25px rgba(0,0,0,0.1);
+}
+</style>
 </head>
+
 <body class="bg-tech-grid min-h-screen text-slate-800 p-6">
 
-    <!-- NAVIGATION -->
-    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl glass-panel rounded-full shadow-lg z-50 px-2 py-2 flex justify-between items-center">
-        <!-- Logo -->
-        <div class="flex items-center gap-3 px-4">
-            <div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white">
-                <i class="ph-bold ph-cube text-xl"></i>
-            </div>
-            <span class="font-bold text-lg tracking-tight text-slate-900">Warehive</span>
-        </div>
+<!-- NAVBAR -->
+<nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl glass-panel rounded-full shadow-lg z-50 px-4 py-2 flex justify-between items-center">
 
-        <!-- Center Menu -->
-        <div class="hidden md:flex items-center bg-slate-100/50 rounded-full p-1">
-            <a href="#" class="px-5 py-2 rounded-full bg-white shadow-sm text-slate-900 font-bold text-sm">Dashboard</a>
-            <a href="/operations/receipts/" class="px-5 py-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 font-medium text-sm transition-all">Receipts</a>
-            <a href="/operations/deliveries/" class="px-5 py-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 font-medium text-sm transition-all">Deliveries</a>
-            <a href="/operations/stock/" class="px-5 py-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 font-medium text-sm transition-all">Stock</a>
-            <!-- Inside dashboard.html Navigation -->
-<a href="move_history.html" class="px-5 py-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 font-medium text-sm transition-all">Move History</a>
-        </div>
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white">
+<i class="ph-bold ph-cube"></i>
+</div>
 
-        <!-- Profile Section (Interactive) -->
-        <div class="relative group px-2">
-            <!-- Profile Pill Button -->
-            <button class="flex items-center gap-3 bg-white/80 backdrop-blur-sm pl-4 pr-1 py-1 rounded-full border border-white shadow-sm hover:bg-white transition-all">
-                <div class="hidden lg:block text-right">
-                    <p class="text-xs font-bold text-slate-800 leading-none">John Doe</p>
-                    <p class="text-[10px] text-slate-500 font-medium leading-none mt-1">Manager</p>
-                </div>
-                <div class="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center border-2 border-white shadow-sm">
-                    <i class="ph-bold ph-user"></i>
-                </div>
-            </button>
+<span class="font-bold text-lg">Warehive</span>
+</div>
 
-            <!-- Dropdown Menu (Appears on Hover) -->
-            <div class="absolute right-0 top-full mt-3 w-48 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-1 hidden group-hover:block">
-                <div class="px-4 py-3 border-b border-slate-100 mb-1">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Account</p>
-                </div>
-                <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-xl transition-colors">
-                    <i class="ph-bold ph-gear"></i> Settings
-                </a>
-                <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-xl transition-colors">
-                    <i class="ph-bold ph-user-circle"></i> Profile
-                </a>
-                <div class="h-px bg-slate-100 my-1"></div>
-                <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-rose-600 hover:bg-rose-50 rounded-xl transition-colors font-medium">
-                    <i class="ph-bold ph-sign-out"></i> Logout
-                </a>
-            </div>
-        </div>
-    </nav>
+<!-- Menu -->
+<div class="hidden md:flex items-center bg-slate-100 rounded-full p-1">
 
-    <!-- MAIN CONTENT -->
-    <main class="max-w-5xl mx-auto mt-32">
-        
-        <div class="mb-12 text-center space-y-2">
-            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">Warehouse Dashboard</h1>
-            <p class="text-slate-500">Real-time inventory overview</p>
-        </div>
+<a href="{% url 'dashboard' %}" class="px-5 py-2 rounded-full bg-white shadow text-sm font-bold">
+Dashboard
+</a>
 
-        <!-- DYNAMIC DATA CARDS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<a href="{% url 'receipts' %}" class="px-5 py-2 rounded-full text-sm text-slate-600 hover:bg-slate-200">
+Receipts
+</a>
 
-            <!-- 1. RECEIPTS CARD -->
-            <a href="/operations/receipts/" class="block group relative">
-                <div class="bg-white rounded-[2.5rem] border border-rose-100 p-8 card-hover-effect overflow-hidden relative h-full flex flex-col items-center text-center justify-center">
-                    
-                    <!-- Top Labels -->
-                    <div class="absolute top-6 left-6 flex items-center gap-2">
-                        <div class="bg-rose-100 p-2 rounded-lg text-rose-600">
-                            <i class="ph-duotone ph-arrow-circle-down-left text-xl"></i>
-                        </div>
-                        <span class="font-bold text-slate-700">Receipts</span>
-                    </div>
-                    <div class="absolute top-6 right-6">
-                        <span class="bg-rose-50 text-rose-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Inbound</span>
-                    </div>
+<a href="{% url 'deliveries' %}" class="px-5 py-2 rounded-full text-sm text-slate-600 hover:bg-slate-200">
+Deliveries
+</a>
 
-                    <!-- Data Display -->
-                    <div class="mt-10 mb-4">
-                        <div class="bg-slate-900 group-hover:bg-rose-600 transition-colors text-white rounded-3xl py-6 px-16 shadow-xl w-full">
-                            <span class="text-6xl font-extrabold block">{{ receipts }}</span>
-                            <span class="text-xs font-bold uppercase tracking-widest opacity-80 mt-1 block">To Receive</span>
-                        </div>
-                    </div>
-                    
-                    <p class="text-slate-400 text-sm font-medium mt-4 group-hover:text-rose-500 transition-colors">Manage Incoming Stock &rarr;</p>
-                </div>
-            </a>
+<a href="{% url 'stock' %}" class="px-5 py-2 rounded-full text-sm text-slate-600 hover:bg-slate-200">
+Stock
+</a>
 
-            <!-- 2. DELIVERIES CARD -->
-            <a href="/operations/deliveries/" class="block group relative">
-                <div class="bg-white rounded-[2.5rem] border border-orange-100 p-8 card-hover-effect overflow-hidden relative h-full flex flex-col items-center text-center justify-center">
-                    
-                    <!-- Top Labels -->
-                    <div class="absolute top-6 left-6 flex items-center gap-2">
-                        <div class="bg-orange-100 p-2 rounded-lg text-orange-600">
-                            <i class="ph-duotone ph-arrow-circle-up-right text-xl"></i>
-                        </div>
-                        <span class="font-bold text-slate-700">Deliveries</span>
-                    </div>
-                    <div class="absolute top-6 right-6">
-                        <span class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Outbound</span>
-                    </div>
+<a href="{% url 'move_history' %}" class="px-5 py-2 rounded-full text-sm text-slate-600 hover:bg-slate-200">
+Move History
+</a>
 
-                    <!-- Data Display -->
-                    <div class="mt-10 mb-4">
-                        <div class="bg-white border-2 border-slate-100 group-hover:border-orange-200 text-slate-900 rounded-3xl py-6 px-16 shadow-xl w-full transition-colors">
-                            <span class="text-6xl font-extrabold block text-orange-600">{{ deliveries }}</span>
-                            <span class="text-xs font-bold uppercase tracking-widest text-slate-400 mt-1 block">To Deliver</span>
-                        </div>
-                    </div>
+</div>
 
-                    <p class="text-slate-400 text-sm font-medium mt-4 group-hover:text-orange-500 transition-colors">Manage Outgoing Orders &rarr;</p>
-                </div>
-            </a>
+<!-- Profile -->
+<div class="flex items-center gap-3">
 
-        </div>
+<div class="hidden lg:block text-right">
+<p class="text-xs font-bold">{{ request.user.username }}</p>
+<p class="text-[10px] text-slate-500">Manager</p>
+</div>
 
-        <!-- Info Footer -->
-        <div class="mt-16 text-center">
-            <div class="inline-flex gap-8 bg-white/60 backdrop-blur-md px-8 py-4 rounded-full border border-white/50 shadow-sm">
-                <div class="flex items-center gap-2 text-sm text-slate-500">
-                    <i class="ph-fill ph-check-circle text-green-500"></i>
-                    <span>Real-time Ledger</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-slate-500">
-                    <i class="ph-fill ph-lightning text-amber-500"></i>
-                    <span>Instant Updates</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-slate-500">
-                    <i class="ph-fill ph-shield-check text-blue-500"></i>
-                    <span>Secure ACID DB</span>
-                </div>
-            </div>
-        </div>
+<div class="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center">
+<i class="ph-bold ph-user"></i>
+</div>
 
-    </main>
+</div>
+
+</nav>
+
+<!-- MAIN -->
+<main class="max-w-5xl mx-auto mt-32">
+
+<div class="text-center mb-12">
+
+<h1 class="text-4xl font-extrabold text-slate-900">
+Warehouse Dashboard
+</h1>
+
+<p class="text-slate-500 mt-2">
+Real-time inventory overview
+</p>
+
+</div>
+
+<!-- CARDS -->
+<div class="grid md:grid-cols-2 gap-8">
+
+<!-- RECEIPTS -->
+<a href="{% url 'receipts' %}" class="card-hover">
+
+<div class="bg-white rounded-3xl border border-rose-100 p-8 text-center">
+
+<div class="flex justify-between items-center mb-6">
+
+<div class="flex items-center gap-2">
+<div class="bg-rose-100 p-2 rounded-lg text-rose-600">
+<i class="ph ph-arrow-circle-down-left"></i>
+</div>
+
+<span class="font-bold">Receipts</span>
+</div>
+
+<span class="text-xs bg-rose-50 text-rose-600 px-3 py-1 rounded-full">
+Inbound
+</span>
+
+</div>
+
+<div class="bg-slate-900 text-white rounded-2xl py-6">
+
+<p class="text-5xl font-bold">{{ receipts }}</p>
+
+<p class="text-xs uppercase opacity-80 mt-2">
+Pending
+</p>
+
+</div>
+
+<p class="text-slate-400 text-sm mt-5">
+Manage Incoming Stock →
+</p>
+
+</div>
+
+</a>
+
+
+<!-- DELIVERIES -->
+<a href="{% url 'deliveries' %}" class="card-hover">
+
+<div class="bg-white rounded-3xl border border-orange-100 p-8 text-center">
+
+<div class="flex justify-between items-center mb-6">
+
+<div class="flex items-center gap-2">
+<div class="bg-orange-100 p-2 rounded-lg text-orange-600">
+<i class="ph ph-arrow-circle-up-right"></i>
+</div>
+
+<span class="font-bold">Deliveries</span>
+</div>
+
+<span class="text-xs bg-orange-50 text-orange-600 px-3 py-1 rounded-full">
+Outbound
+</span>
+
+</div>
+
+<div class="bg-white border rounded-2xl py-6">
+
+<p class="text-5xl font-bold text-orange-600">
+{{ deliveries }}
+</p>
+
+<p class="text-xs uppercase text-slate-400 mt-2">
+Pending
+</p>
+
+</div>
+
+<p class="text-slate-400 text-sm mt-5">
+Manage Outgoing Orders →
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+<!-- FOOTER INFO -->
+<div class="mt-16 flex justify-center gap-8 text-sm text-slate-500">
+
+<div class="flex items-center gap-2">
+<i class="ph-fill ph-check-circle text-green-500"></i>
+Real-time Ledger
+</div>
+
+<div class="flex items-center gap-2">
+<i class="ph-fill ph-lightning text-yellow-500"></i>
+Instant Updates
+</div>
+
+<div class="flex items-center gap-2">
+<i class="ph-fill ph-shield-check text-blue-500"></i>
+Secure Database
+</div>
+
+</div>
+
+</main>
 
 </body>
 </html>

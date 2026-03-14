@@ -9,4 +9,5 @@ urlpatterns = [
 
     path('deliveries/', views.deliveries_list, name='deliveries'),
 
+    path('stock/', views.stock_list, name='stock'),   # ADD THIS
 ]
