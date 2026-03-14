@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stock</title>
+</head>
+
+<body>
+
+<h2>Stock</h2>
+
+<table border="1">
+
+<tr>
+<th>Product</th>
+<th>Unit Cost</th>
+<th>On Hand Qty</th>
+</tr>
+
+{% for p in products %}
+
+<tr>
+<td>{{p.name}}</td>
+<td>{{p.unit_cost}}</td>
+<td>{{p.stock}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

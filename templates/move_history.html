@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Move History</title>
+</head>
+
+<body>
+
+<h2>Stock Move History</h2>
+
+<table border="1">
+
+<tr>
+<th>Product</th>
+<th>Quantity</th>
+<th>Move Type</th>
+<th>Date</th>
+</tr>
+
+{% for m in moves %}
+
+<tr>
+
+<td>{{m.product}}</td>
+<td>{{m.quantity}}</td>
+
+{% if m.move_type == "IN" %}
+<td style="color:green;">IN</td>
+{% else %}
+<td style="color:red;">OUT</td>
+{% endif %}
+
+<td>{{m.created_at}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

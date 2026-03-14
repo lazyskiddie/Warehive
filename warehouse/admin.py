@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Warehouse, Location
 
-# Register your models here.
+admin.site.register(Warehouse)
+admin.site.register(Location)

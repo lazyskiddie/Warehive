@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Deliveries</title>
+</head>
+
+<body>
+
+<h2>Deliveries</h2>
+
+<table border="1">
+
+<tr>
+<th>Reference</th>
+<th>Contact</th>
+<th>Schedule Date</th>
+<th>Status</th>
+</tr>
+
+{% for d in deliveries %}
+
+<tr>
+<td>{{d.reference}}</td>
+<td>{{d.contact}}</td>
+<td>{{d.schedule_date}}</td>
+<td>{{d.status}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
