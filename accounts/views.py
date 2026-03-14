@@ -27,7 +27,11 @@ def signup(request):
         email = request.POST['email']
         password = request.POST['password']
 
-        User.objects.create_user(username=username, email=email, password=password)
+        User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
 
         return redirect('/')
 
