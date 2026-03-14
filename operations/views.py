@@ -3,15 +3,14 @@ from .models import Receipt, Delivery
 
 
 def dashboard(request):
+    return render(request, "dashboard.html")
 
-    receipts = Receipt.objects.count()
 
-    deliveries = Delivery.objects.count()
+def receipts_list(request):
+    receipts = Receipt.objects.all()
+    return render(request, "receipts.html", {"receipts": receipts})
 
-    context = {
-        "receipts": receipts,
-        "deliveries": deliveries
-    }
 
-    return render(request, "dashboard.html", context)
-
+def deliveries_list(request):
+    deliveries = Delivery.objects.all()
+    return render(request, "deliveries.html", {"deliveries": deliveries})

@@ -36,3 +36,8 @@ def signup(request):
         return redirect('/')
 
     return render(request, "signup.html")
+
+
+
+def forget_password(request):
+    return render(request, "forget_password.html")
