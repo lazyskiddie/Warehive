@@ -46,3 +46,36 @@ def deliveries_list(request):
 def stock_list(request):
     products = Product.objects.all()
     return render(request, "products_list.html", {"products": products})
+
+from django.shortcuts import render
+
+def move_history(request):
+    return render(request, "deliveries_list.html")
+
+from django.shortcuts import render
+from .models import Product
+
+def dashboard(request):
+    return render(request,"dashboard.html")
+
+
+def products_list(request):
+    products = Product.objects.all()
+    return render(request,"products_list.html",{"products":products})
+
+
+def receipts_list(request):
+    return render(request,"receipts_list.html")
+
+
+def deliveries_list(request):
+    return render(request,"deliveries_list.html")
+
+
+def stock_list(request):
+    products = Product.objects.all()
+    return render(request,"stock_list.html",{"products":products})
+
+
+def move_history(request):
+    return render(request,"deliveries_list.html")
