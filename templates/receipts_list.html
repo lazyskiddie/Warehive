@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Receipts</title>
+</head>
+
+<body>
+
+<h2>Receipts</h2>
+
+<table border="1">
+
+<tr>
+<th>Reference</th>
+<th>Contact</th>
+<th>Schedule Date</th>
+<th>Status</th>
+</tr>
+
+{% for r in receipts %}
+
+<tr>
+<td>{{r.reference}}</td>
+<td>{{r.contact}}</td>
+<td>{{r.schedule_date}}</td>
+<td>{{r.status}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
